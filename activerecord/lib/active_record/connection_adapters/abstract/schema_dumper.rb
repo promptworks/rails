@@ -18,7 +18,7 @@ module ActiveRecord
       def prepare_column_options(column, types)
         spec = {}
         spec[:name]      = column.name.inspect
-        spec[:type]      = column.type.to_s
+        spec[:type]      = schema_type(column)
         spec[:null]      = 'false' unless column.null
 
         limit = column.limit || types[column.type][:limit]
@@ -38,6 +38,10 @@ module ActiveRecord
       end
 
       private
+
+      def schema_type(column)
+        column.type.to_s
+      end
 
       def schema_default(column)
         default = column.type_cast_from_database(column.default)

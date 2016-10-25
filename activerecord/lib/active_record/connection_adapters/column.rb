@@ -40,7 +40,11 @@ module ActiveRecord
       end
 
       def has_default?
-        !default.nil?
+        !default.nil? || default_function
+      end
+
+      def bigint?
+        /bigint/ === sql_type
       end
 
       # Returns the human name of the column name.

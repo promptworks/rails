@@ -12,6 +12,14 @@ module ActiveRecord
           column(args[0], :tsvector, options)
         end
 
+        def bigserial(name, options = {})
+          column(name, :bigserial, options)
+        end
+
+        def serial(name, options = {})
+          column(name, :serial, options)
+        end
+
         def int4range(name, options = {})
           column(name, :int4range, options)
         end

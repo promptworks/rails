@@ -15,6 +15,12 @@ module ActiveRecord
 
         @default_function = default_function
       end
+
+      def serial?
+        return unless default_function
+
+        %r{\Anextval\('(?<table_name>.+)_#{name}_seq'::regclass\)\z} === default_function
+      end
     end
   end
 end
